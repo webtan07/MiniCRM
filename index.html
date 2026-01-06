@@ -170,34 +170,12 @@
 
   </section>
 </div>
+<form 
+  action="https://script.google.com/macros/s/AKfycbwvyn1jSco-g8YaZ92tSz1TYRK5UFjsVrt8bP2jurZyaCZmcRiWqTJtD3TyPjq9q6j3Jw/exec"
+  method="POST"
+>
 
-<script>
-const form = document.getElementById("leadForm");
-const status = document.getElementById("status");
 
-form.addEventListener("submit", function(e) {
-  e.preventDefault();
-
-  const data = new URLSearchParams({
-  name: form.name.value,
-  email: form.email.value,
-  phone: form.phone.value,
-  goal: form.goal.value
-});
-
-fetch("https://script.google.com/macros/s/AKfycbwvyn1jSco-g8YaZ92tSz1TYRK5UFjsVrt8bP2jurZyaCZmcRiWqTJtD3TyPjq9q6j3Jw/exec", {
-  method: "POST",
-  body: data
-})
-.then(() => {
-  status.textContent = "Thanks! Check your email shortly 💪";
-  form.reset();
-})
-.catch(() => {
-  status.textContent = "Something went wrong. Please try again.";
-});
-
-</script>
 
 </body>
 </html>
