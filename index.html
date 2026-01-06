@@ -151,11 +151,11 @@
       <p>Fill in your details and I’ll be in touch shortly.</p>
 
       <form id="leadForm">
-        <input type="text" name="name" placeholder="Full Name" required>
-        <input type="email" name="email" placeholder="Email Address" required>
-        <input type="tel" name="phone" placeholder="Phone Number" required>
+        <input type="text" name="name"  autocomplete="name" placeholder="Full Name" required>
+        <input type="email" name="email"  autocomplete="email" placeholder="Email Address" required>
+        <input type="tel" name="phone"  autocomplete="phone" placeholder="Phone Number" required>
 
-        <select name="goal" required>
+        <select name="goal" autocomplete="off"  required>
           <option value="">Your Primary Goal</option>
           <option>Weight loss</option>
           <option>Muscle gain</option>
