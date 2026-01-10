@@ -96,11 +96,16 @@
                 <h2 class="text-2xl font-light mb-2">Claim Free Session</h2>
                 <p class="text-gray-500 text-sm mb-8">Enter your details and I’ll reach out to schedule.</p>
                 
-                <form id="leadForm" class="space-y-4">
+               <form id="leadForm" class="space-y-4">
                     <input type="text" name="name" placeholder="Full Name" class="input-field w-full px-6 py-4 rounded-xl text-white" required>
                     <input type="email" name="email" placeholder="Email Address" class="input-field w-full px-6 py-4 rounded-xl text-white" required>
                     <input type="tel" name="phone" placeholder="Phone Number" class="input-field w-full px-6 py-4 rounded-xl text-white" required>
                     
+                    <div class="relative">
+                        <label class="text-[10px] uppercase tracking-widest text-gray-500 ml-4 mb-1 block">Preferred Date & Time</label>
+                        <input type="datetime-local" name="appointment" class="input-field w-full px-6 py-4 rounded-xl text-gray-400" required>
+                    </div>
+
                     <select name="goal" class="input-field w-full px-6 py-4 rounded-xl text-gray-400" required>
                         <option value="" class="bg-black">Your Primary Goal</option>
                         <option value="Weight loss" class="bg-black">Weight loss</option>
@@ -109,7 +114,7 @@
                     </select>
 
                     <button type="submit" id="submitBtn" class="w-full bg-white text-black mt-4 px-8 py-5 rounded-xl font-semibold hover:bg-gray-200 transition-all active:scale-95">
-                        Start My Transformation
+                        Book My Consultation
                     </button>
                 </form>
                 <p id="status" class="text-center text-sm mt-6 text-gray-400"></p>
@@ -137,7 +142,7 @@
             const data = Object.fromEntries(formData.entries());
 
             // Using your existing Google Script URL
-            fetch("https://script.google.com/macros/s/AKfycbyW-mgDQrNYiqVP_UyFMLIkkOm5f1gdYrCL8Rob_JZWuUHZzzJzkwd2kfADq5RkYI4T/exec", {
+            fetch("https://script.google.com/macros/s/AKfycbx4iRTOvcI3In5VQu5Ggger4ehL0sV0zh_N-hxfcbdWeIHd_-Io97dyZAAFlyeVemix/exec", {
                 method: "POST",
                 body: JSON.stringify(data),
                 // Note: No-cors or specific headers may be needed depending on your script setup
