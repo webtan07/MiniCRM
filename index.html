@@ -1,35 +1,172 @@
-<section id="booking" class="reveal bg-neutral-900/40 p-8 rounded-3xl border border-white/5">
-    <h2 class="text-3xl font-light mb-6 text-center">Schedule a Session</h2>
-    
-    <form id="leadForm" class="max-w-md mx-auto space-y-4">
-        <input type="text" name="name" placeholder="Full Name" class="input-field w-full px-6 py-4 rounded-xl text-white" required>
-        <input type="email" name="email" placeholder="Email Address" class="input-field w-full px-6 py-4 rounded-xl text-white" required>
-        <input type="datetime-local" name="date" class="input-field w-full px-6 py-4 rounded-xl text-white" required>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prive | Elite Personal Training</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap');
         
-        <button type="submit" id="submitBtn" class="w-full bg-white text-black px-8 py-4 rounded-xl font-medium hover:bg-gray-200 transition">
-            Confirm Appointment
-        </button>
-        <p id="msg" class="text-center text-sm mt-4 text-green-500 hidden">Success! Check your email and calendar.</p>
-    </form>
-</section>
+        body {
+            background-color: #000000;
+            color: #ffffff;
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+        }
 
-<script>
-    const scriptURL = 'https://script.google.com/macros/s/AKfycbxcYHt0heAaFwM-58k0nnZBv8jjjmPpqHJhpI0E-yhrnYgycgbnNeIg_06N8yjhFRWe/exec'; 
-    const form = document.getElementById('leadForm');
-    const msg = document.getElementById('msg');
-    const btn = document.getElementById('submitBtn');
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
 
-    form.addEventListener('submit', e => {
-        e.preventDefault();
-        btn.disabled = true;
-        btn.innerText = "Processing...";
+        .input-field {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
 
-        fetch(scriptURL, { method: 'POST', body: new FormData(form)})
-            .then(response => {
-                msg.classList.remove('hidden');
-                btn.innerText = "Confirmed";
-                form.reset();
+        .input-field:focus {
+            outline: none;
+            border-color: rgba(255, 255, 255, 0.4);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .benefit-item {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 1.5rem 0;
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.8s ease-out;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="fixed top-0 w-full z-50 bg-black/80 backdrop-blur-md border-b border-white/5">
+        <div class="max-w-5xl mx-auto px-6 py-5 flex justify-between items-center">
+            <div class="text-xl font-medium tracking-tighter">PRIVE <span class="text-gray-500 italic font-light">FITNESS</span></div>
+            <div class="text-xs uppercase tracking-widest text-gray-400 font-semibold">Limited Spots Available</div>
+        </div>
+    </nav>
+
+    <main class="max-w-5xl mx-auto px-6 pt-40 pb-20">
+        
+        <section class="reveal grid lg:grid-cols-2 gap-16 items-start">
+            
+            <div>
+                <h1 class="text-5xl md:text-7xl font-light leading-tight mb-8 tracking-tight">
+                    Your transformation <br>
+                    <span class="text-gray-500 italic">starts here.</span>
+                </h1>
+                <p class="text-gray-400 text-xl max-w-md leading-relaxed mb-12">
+                    Custom fitness assessments and elite coaching designed for your specific goals. No pressure, just results.
+                </p>
+
+                <div class="space-y-2">
+                    <div class="benefit-item flex justify-between items-center">
+                        <span class="text-gray-300">Custom Fitness Assessment</span>
+                        <span class="text-gray-600">01</span>
+                    </div>
+                    <div class="benefit-item flex justify-between items-center">
+                        <span class="text-gray-300">Personalised Goal Mapping</span>
+                        <span class="text-gray-600">02</span>
+                    </div>
+                    <div class="benefit-item flex justify-between items-center">
+                        <span class="text-gray-300">No Long-term Obligation</span>
+                        <span class="text-gray-600">03</span>
+                    </div>
+                </div>
+
+                <p class="mt-12 text-xs uppercase tracking-widest text-gray-500">
+                    Trusted by high-performance individuals.
+                </p>
+            </div>
+
+            <div class="glass-card p-8 md:p-12 rounded-3xl sticky top-32">
+                <h2 class="text-2xl font-light mb-2">Claim Free Session</h2>
+                <p class="text-gray-500 text-sm mb-8">Enter your details and I’ll reach out to schedule.</p>
+                
+                <form id="leadForm" class="space-y-4">
+                    <input type="text" name="name" placeholder="Full Name" class="input-field w-full px-6 py-4 rounded-xl text-white" required>
+                    <input type="email" name="email" placeholder="Email Address" class="input-field w-full px-6 py-4 rounded-xl text-white" required>
+                    <input type="tel" name="phone" placeholder="Phone Number" class="input-field w-full px-6 py-4 rounded-xl text-white" required>
+                    
+                    <select name="goal" class="input-field w-full px-6 py-4 rounded-xl text-gray-400" required>
+                        <option value="" class="bg-black">Your Primary Goal</option>
+                        <option value="Weight loss" class="bg-black">Weight loss</option>
+                        <option value="Muscle gain" class="bg-black">Muscle gain</option>
+                        <option value="General fitness" class="bg-black">General fitness</option>
+                    </select>
+
+                    <button type="submit" id="submitBtn" class="w-full bg-white text-black mt-4 px-8 py-5 rounded-xl font-semibold hover:bg-gray-200 transition-all active:scale-95">
+                        Start My Transformation
+                    </button>
+                </form>
+                <p id="status" class="text-center text-sm mt-6 text-gray-400"></p>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="max-w-5xl mx-auto px-6 py-12 border-t border-white/5 text-gray-600 text-[10px] tracking-[0.2em] uppercase">
+        © 2026 PRIVE FITNESS STUDIO. PRIVACY IS STRENGTH.
+    </footer>
+
+    <script>
+        // Form Logic
+        const form = document.getElementById("leadForm");
+        const status = document.getElementById("status");
+        const btn = document.getElementById("submitBtn");
+
+        form.addEventListener("submit", function(e) {
+            e.preventDefault();
+            btn.innerText = "Processing...";
+            btn.disabled = true;
+
+            const formData = new FormData(form);
+            const data = Object.fromEntries(formData.entries());
+
+            // Using your existing Google Script URL
+            fetch("https://script.google.com/macros/s/AKfycbyW-mgDQrNYiqVP_UyFMLIkkOm5f1gdYrCL8Rob_JZWuUHZzzJzkwd2kfADq5RkYI4T/exec", {
+                method: "POST",
+                body: JSON.stringify(data),
+                // Note: No-cors or specific headers may be needed depending on your script setup
             })
-            .catch(error => console.error('Error!', error.message));
-    });
-</script>
+           .then(() => {
+                // Instead of just showing text, we redirect:
+                window.location.href = "thank-you.html"; 
+            })
+            .catch(() => {
+                status.textContent = "Something went wrong. Please try again.";
+                btn.disabled = false;
+                btn.innerText = "Start My Transformation";
+            });
+        });
+
+        // Scroll Reveal Animation
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                if (elementTop < windowHeight - 100) {
+                    reveals[i].classList.add("active");
+                }
+            }
+        }
+        window.addEventListener("scroll", reveal);
+        reveal();
+    </script>
+
+</body>
+</html>
